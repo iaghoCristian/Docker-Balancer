@@ -1,0 +1,20 @@
+-- Criar a imagem do valida cpf, com nome "valida-cpf"
+sudo docker build -t valida-cpf .
+
+-- Verificar se a imagem foi criada
+sudo docker images
+
+-- Rodar um comando em um container
+sudo docker container run -p 5001:5000 --name cont -e "name=ContainerX" -d valida-cpf
+
+-- Agora iremos fazer o balanceamento de carga
+-- Criando a imagem do nginxbalancer
+sudo docker build -t nginxbalancer .
+
+-- Rodar o comando com o balanceamento
+sudo docker container run -p 5000:80 -d nginxbalancer
+
+-- Para rodar o script de requisição
+sudo bash requisicao.sh gimp
+
+
